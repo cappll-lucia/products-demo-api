@@ -3,6 +3,7 @@ coverage
 
 # API keys and secrets
 .env
+docker.txt
 
 # dependencies
 node_modules
@@ -14,6 +15,8 @@ Thumbs.db
 ```
 # ignore built ts files
 dist/**/*
+
+src/shared/db/**/*
 
 # vscode
 .vscode/

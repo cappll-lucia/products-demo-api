@@ -4,9 +4,8 @@ export class Product{
     constructor(
         public name:string, 
         public description:string, 
-        public categoryClass: string, 
+        public categoryId: string, 
         public price:number, 
-        public discountClass: string|null,
-        public id= crypto.randomUUID()
+        public id ?:number
     ){}
 }

@@ -3,40 +3,39 @@
 GET http://localhost:3000/api/products
 
 ### get product by id
-GET http://localhost:3000/api/products/30186c31-4a1f-43d8-be37-ca78e3d8b2c8
+GET http://localhost:3000/api/products/1001
 
 ### create product
 POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "name": "Zapatillas Nike Air Max 90",
-    "description": "Zapatillas Nike Air Max 90.  Color: Blanco.  Talles: 40, 41, 42, 43, 44, 45, 46",
-    "categoryClass": "Calzado",
-    "price": 88000,
-    "discountClass": "Sin descuento"
+    "name": "Caa de Pescar pro",
+    "description": "Caa de pesca profesional de 3.60 mts de largo.  Con mango de corcho y reel de grafito.  Incluye 3 anzuelos de regalo.",
+    "categoryId": 2,
+    "price": 100000
 }
 
 ### modify a product (modificaciones completas)(put-idempotente)
-PUT http://localhost:3000/api/products/30186c31-4a1f-43d8-be37-ca78e3d8b2c8
+PUT http://localhost:3000/api/products/1003
 Content-Type: application/json
 
 {
-    "name": "Anafe Brogas",
-    "description": "Cocina de una hornalla.  Funciona a gas butano con carga descartable tradicional",
-    "categoryClass": "Camping",
-    "price": 51000,
-    "discountClass": "15%"
+    "name": "Caña de Pescar pro",
+    "description": "Caña de pesca profesional de 3.60 mts de largo.  Con mango de corcho y reel de grafito.  Incluye 3 anzuelos de regalo.",
+    "categoryId": 2,
+    "price": 100000
 }
+
 
 
 ### modify a product (modificaciones parciales)
-PATCH  http://localhost:3000/api/products/30186c31-4a1f-43d8-be37-ca78e3d8b2c8
+PATCH  http://localhost:3000/api/products/1001
 Content-Type: application/json
 
 {
-    "discountClass": "Sin Descuento"
+    "price": 35500
 }
 
 ### delete a product
-DELETE http://localhost:3000/api/products/30186c31-4a1f-43d8-be37-ca78e3d8b2c8
+DELETE http://localhost:3000/api/products/1002

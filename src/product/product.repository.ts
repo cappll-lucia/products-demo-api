@@ -1,55 +1,46 @@
 import { Repository } from "../shared/repository.js";
 import { Product } from "./product.entity.js";
-
-const products: Product[] = [
-    new Product(
-        'Carpa Igloo 4D',
-        'Plazas: 3  |   Medidas : 100 + 210 + 30 x 210 x140cm',
-        'Camping',
-        15000,
-        'Sin descuento',
-        'eedc30fe-9c03-44ed-9130-8dcc645cb177'
-    ),
-    new Product(
-        'Anafe brogas',
-        'Cocina de una hornalla que funciona a gas butano con carga descartable tradicional',
-        'Camping',
-        30000,
-        '5%',
-        '30186c31-4a1f-43d8-be37-ca78e3d8b2c8'
-    ),
-]
+import {pool} from '../shared/db/conn.mysql.js';
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 export class ProductRepository implements Repository<Product>{
     
-    public findAll (): Product[] | undefined{
-        return products;
+    public async findAll (): Promise< Product[] | undefined >{
+        const [products] = await pool.query('select * from products');
+        return products as Product[];
     }
 
-    public findOne(item: {id: string}): Product | undefined{
-        return products.find((product)=>product.id===item.id);
+    public async findOne(item: {id: string}): Promise< Product | undefined >{
+        const id = Number.parseInt(item.id);
+        const [products] = await pool.query<RowDataPacket[]>('select * from products where id = ?', [id]);
+        if(products.length ===0) return undefined;
+        const product = products[0] as Product;
+        return product;
+
     }
 
-    public add(item: Product): Product | undefined{
-        products.push(item);
+    public async add(item: Product):  Promise< Product | undefined >{
+        const {id, ...productRow} = item;
+        const [result] = await pool.query<ResultSetHeader>('insert into products set ?', [productRow]);
+        item.id = result.insertId;
         return item;
     }
 
-    public update(item: Product): Product | undefined{
-        const productIdx = products.findIndex((product)=>product.id===item.id);
-        if(productIdx!=-1){
-            products[productIdx]= {...products[productIdx], ...item};
-        }
-        return products[productIdx];
+    public async update(id: string, item: Product): Promise< Product | undefined >{
+        await pool.query('update products set ? where id = ?', [item, id]);
+        return item;
     }
 
-    public remove(item:{id:string}): Product | undefined{
-        const productIdx = products.findIndex((product)=>product.id===item.id);  
-        if(productIdx!=-1){
-            const deletedProduct = products[productIdx];
-            products.splice(productIdx,1);
-            return deletedProduct;
+    public async remove(item:{id:string}): Promise< Product | undefined >{
+        try{
+            const productToDelete = await this.findOne(item);
+            const productId = Number.parseInt(item.id);
+            await pool.query('delete from products where id = ?', [productId]);
+            return productToDelete;
+        }catch(err){
+            throw new Error('Unable to delete product');
         }
+        
     }
 
 }
