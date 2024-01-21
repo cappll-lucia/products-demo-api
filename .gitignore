@@ -16,7 +16,7 @@ Thumbs.db
 # ignore built ts files
 dist/**/*
 
-src/shared/db/**/*
+
 
 # vscode
 .vscode/
