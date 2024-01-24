@@ -1,1 +1,1 @@
-This is an ecommerce demo API build with Express and Typescript.
+RESTful API Demo for managing products and promotions using Node.js, Express, TypeScript, MySQL, and Mikro-ORM.
