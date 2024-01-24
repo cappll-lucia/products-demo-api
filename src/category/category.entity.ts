@@ -11,6 +11,6 @@ export class Category extends BaseEntity{
     @Property({nullable: true})
     description?: string
 
-    @OneToMany(()=> Product, product => product.category, {cascade: [Cascade.ALL]})
-    products= new Collection<Category>(this)
+    @OneToMany(()=> Product, (product) => product.category, {cascade: [Cascade.ALL],})
+    products= new Collection<Product>(this)
 }   

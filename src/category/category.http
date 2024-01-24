@@ -1,0 +1,42 @@
+
+### get all categories
+GET http://localhost:3000/api/categories
+
+### ID
+@id = {{createCategory.response.body.data.id}}
+
+### get category by id
+GET http://localhost:3000/api/categories/{{id}}
+
+
+
+### create category
+# @name createCategory
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+    "name": "Surf"
+}
+
+
+### modify a category
+PUT http://localhost:3000/api/categories/10
+Content-Type: application/json
+
+{
+    "name": "Surf",
+    "description": "Surfing is the sport of riding breaking waves toward the shore, usually on a surfboard. It has a long history and culture, and is a popular activity in many coastal areas around the world. Surfing has been an Olympic sport since 2020. "
+}
+
+### modify a category
+PATCH http://localhost:3000/api/categories/8
+Content-Type: application/json
+
+{
+    "description": "Testing patch."
+}
+
+
+### delete a category
+DELETE http://localhost:3000/api/categories/11

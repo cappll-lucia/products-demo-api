@@ -16,6 +16,9 @@ Thumbs.db
 # ignore built ts files
 dist/**/*
 
+# ormconfig file
+src/shared/db/orm.ts
+
 
 
 # vscode

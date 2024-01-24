@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import express from 'express';
 import { productRouter } from './product/product.routes.js';
+import { categoryRouter } from './category/category.routes.js';
+import { promotionRouter } from './promotion/promotion.routes.js';
 import {orm, syncSchema} from './shared/db/orm.js';
 import { RequestContext } from '@mikro-orm/mysql';
 
@@ -17,8 +19,9 @@ app.use((req, res, next)=>{
 
 //antes de rutas y middlewares de negocio
 
-app.use('/api/products', productRouter)
-
+app.use('/api/products', productRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/promotions', promotionRouter);
 
 app.use((_, res)=>{
     res.status(404).send({message: 'Resource not found'});

@@ -1,0 +1,38 @@
+
+### get all promotions
+GET http://localhost:3000/api/promotions
+
+### get promotion by id
+GET http://localhost:3000/api/promotions/1
+
+### create promotion
+POST http://localhost:3000/api/promotions
+Content-Type: application/json
+
+{
+    "title": "Camping time",
+    "description": "DNSNJAKDSL.,SMD F",
+    "discountPercent": 5
+}
+
+### modify promotion
+PUT http://localhost:3000/api/promotions/1
+Content-Type: application/json
+
+{
+    "title": "Welcome 2024",
+    "description": "Happy New Year",
+    "discountPercent": 10
+}
+
+### modify promotion
+PATCH http://localhost:3000/api/promotions/1
+Content-Type: application/json
+
+{
+    "discountPercent": 25
+}
+
+### delete promotion
+DELETE http://localhost:3000/api/promotions/1
+
