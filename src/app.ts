@@ -3,7 +3,7 @@ import express from 'express';
 import { productRouter } from './product/product.routes.js';
 import { categoryRouter } from './category/category.routes.js';
 import { promotionRouter } from './promotion/promotion.routes.js';
-import {orm, syncSchema} from './shared/db/orm.js';
+import {orm, syncSchema} from './shared/db/conn.orm.js';
 import { RequestContext } from '@mikro-orm/mysql';
 
 

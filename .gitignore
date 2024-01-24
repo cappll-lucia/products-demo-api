@@ -17,7 +17,7 @@ Thumbs.db
 dist/**/*
 
 # ormconfig file
-src/shared/db/orm.ts
+src/shared/db/conn.orm.ts
 
 
 

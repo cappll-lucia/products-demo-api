@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import { orm } from '../shared/db/orm.js';
+import { orm } from '../shared/db/conn.orm.js';
 import { Category } from './category.entity.js';
 import { rmSync } from 'fs';
 
